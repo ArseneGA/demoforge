@@ -1,0 +1,238 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   DEMOFORGE — Design tokens
+   Studio agentique · violet électrique · dark-only
+   ============================================================ */
+
+@theme {
+  /* Brand accent */
+  --color-accent:       hsl(268 78% 64%);
+  --color-accent-light: hsl(268 80% 76%);
+  --color-accent-deep:  hsl(268 78% 52%);
+  --color-accent-dim:   hsl(268 78% 64% / 0.14);
+
+  /* Surfaces */
+  --color-bg:             #0E0D11;
+  --color-surface:        #18171C;
+  --color-surface-raised: #201F26;
+
+  /* Text */
+  --color-text-primary:   #F2F1F5;
+  --color-text-secondary: #B8B6C0;
+  --color-text-tertiary:  #6F6D78;
+
+  /* Borders */
+  --color-border-df:       #2A2932;
+  --color-border-df-hover: #3A3944;
+
+  /* Agents */
+  --color-agent-scout:    hsl(268 78% 64%);
+  --color-agent-director: hsl(195 78% 60%);
+  --color-agent-faker:    hsl(155 60% 56%);
+  --color-agent-narrator: hsl(35 90% 62%);
+
+  /* Semantic */
+  --color-success: hsl(155 60% 56%);
+  --color-warn:    hsl(35 90% 62%);
+
+  /* Fonts */
+  --font-display: var(--font-display), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:    var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    var(--font-mono), ui-monospace, monospace;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+}
+
+/* ============================================================
+   :root — DemoForge tokens + shadcn tokens branchés dessus
+   App dark-only : on définit tout en dark directement dans :root
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+
+  /* ── DemoForge brand tokens ── */
+  --brand:          hsl(268 78% 64%);      /* violet principal */
+  --brand-light:    hsl(268 80% 76%);      /* violet clair */
+  --brand-deep:     hsl(268 78% 52%);      /* violet foncé */
+  --brand-dim:      hsl(268 78% 64% / 0.14); /* violet tamisé */
+  --brand-glow:     0 0 32px hsl(268 78% 64% / 0.28);
+
+  --bg:             #0E0D11;
+  --surface:        #18171C;
+  --surface-raised: #201F26;
+  --surface-glass:  rgba(24, 23, 28, 0.72);
+
+  --border-df:      #2A2932;
+  --border-hover:   #3A3944;
+
+  --text:           #F2F1F5;
+  --text-sec:       #B8B6C0;
+  --text-ter:       #6F6D78;
+
+  --agent-1: hsl(268 78% 64%);  /* Scout    — violet  */
+  --agent-2: hsl(195 78% 60%);  /* Director — cyan    */
+  --agent-3: hsl(155 60% 56%);  /* Faker    — green   */
+  --agent-4: hsl(35 90% 62%);   /* Narrator — amber   */
+
+  --success: hsl(155 60% 56%);
+  --warn:    hsl(35 90% 62%);
+
+  /* ── shadcn tokens branchés sur DemoForge (une seule définition chacun) ── */
+  --background:            #0E0D11;
+  --foreground:            #F2F1F5;
+
+  --card:                  #18171C;
+  --card-foreground:       #F2F1F5;
+
+  --popover:               #201F26;
+  --popover-foreground:    #F2F1F5;
+
+  --primary:               hsl(268 78% 64%);
+  --primary-foreground:    #ffffff;
+
+  --secondary:             #201F26;
+  --secondary-foreground:  #B8B6C0;
+
+  --muted:                 #201F26;
+  --muted-foreground:      #6F6D78;
+
+  /* shadcn accent = états hover/focus, on utilise le dim violet */
+  --accent:                hsl(268 78% 64% / 0.14);
+  --accent-foreground:     hsl(268 80% 76%);
+
+  --destructive:            oklch(0.704 0.191 22.216);
+  --destructive-foreground: #ffffff;
+
+  --border:                #2A2932;
+  --input:                 #2A2932;
+  --ring:                  hsl(268 78% 64%);
+
+  --radius: 0.625rem;
+
+  /* ── Sidebar ── */
+  --sidebar:                   var(--surface);
+  --sidebar-foreground:        var(--text);
+  --sidebar-primary:           hsl(268 78% 64%);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent:            hsl(268 78% 64% / 0.14);
+  --sidebar-accent-foreground: hsl(268 80% 76%);
+  --sidebar-border:            #2A2932;
+  --sidebar-ring:              hsl(268 78% 64%);
+}
+
+/* ============================================================
+   @theme inline — branchement Tailwind → CSS vars
+   ============================================================ */
+
+@theme inline {
+  --font-sans:    var(--font-sans);
+  --font-mono:    var(--font-mono);
+  --font-display: var(--font-display);
+  --font-heading: var(--font-display);
+
+  --color-background:   var(--background);
+  --color-foreground:   var(--foreground);
+  --color-card:         var(--card);
+  --color-card-foreground:    var(--card-foreground);
+  --color-popover:      var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary:      var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary:    var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:        var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent:       var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive:  var(--destructive);
+  --color-border:       var(--border);
+  --color-input:        var(--input);
+  --color-ring:         var(--ring);
+
+  --color-sidebar:                   var(--sidebar);
+  --color-sidebar-foreground:        var(--sidebar-foreground);
+  --color-sidebar-primary:           var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:            var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border:            var(--sidebar-border);
+  --color-sidebar-ring:              var(--sidebar-ring);
+
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 1.0);
+  --radius-lg:  calc(var(--radius) * 1.4);
+  --radius-xl:  calc(var(--radius) * 2.0);
+  --radius-2xl: calc(var(--radius) * 2.8);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ============================================================
+   Animations
+   ============================================================ */
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.35; transform: scale(0.7); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   Utilitaires globaux
+   ============================================================ */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: hsl(268 78% 64% / 0.3);
+  color: #fff;
+}
+
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--text-ter); }
