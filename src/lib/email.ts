@@ -1,12 +1,17 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function getResend() {
+  if (!process.env.RESEND_API_KEY) return null
+  return new Resend(process.env.RESEND_API_KEY)
+}
+
 const FROM = process.env.RESEND_FROM ?? 'DemoForge <noreply@demoforge.app>'
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3002'
 
 // ─── Welcome email ────────────────────────────────────────
 export async function sendWelcomeEmail(to: string) {
-  if (!process.env.RESEND_API_KEY) return
+  const resend = getResend()
+  if (!resend) return
   await resend.emails.send({
     from: FROM,
     to,
@@ -31,7 +36,8 @@ export async function sendWelcomeEmail(to: string) {
 
 // ─── Invitation email ─────────────────────────────────────
 export async function sendInvitationEmail(to: string, orgName: string, inviteUrl: string, inviterEmail: string) {
-  if (!process.env.RESEND_API_KEY) return
+  const resend = getResend()
+  if (!resend) return
   await resend.emails.send({
     from: FROM,
     to,
@@ -57,7 +63,8 @@ export async function sendInvitationEmail(to: string, orgName: string, inviteUrl
 
 // ─── Re-scan notification ─────────────────────────────────
 export async function sendRescanEmail(to: string, repoFullName: string, branch: string) {
-  if (!process.env.RESEND_API_KEY) return
+  const resend = getResend()
+  if (!resend) return
   await resend.emails.send({
     from: FROM,
     to,
